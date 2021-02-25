@@ -93,9 +93,9 @@ def read_input(input_stream: TextIO = sys.stdin) -> Input:
         if street.end not in intersections:
             intersections[street.end] = Intersection(id=street.end, in_streets=[], out_streets=[])
         start_intersection = intersections[street.beginning]
-        start_intersection.out_streets.append(street.name)
+        start_intersection.out_streets.append(street)
         end_intersection = intersections[street.end]
-        end_intersection.in_streets.append(street.name)
+        end_intersection.in_streets.append(street)
             
     return Input(duration_seconds=D, nb_intersections=I, nb_cars=V, bonus_points=F, streets=streets, paths=paths, intersections=intersections)
 
@@ -140,4 +140,4 @@ def write_output(obj: Output, output_stream: TextIO = sys.stdout) -> None:
         for street, seconds in schedule.green_light_streets.items():
             lines.append(f"{street.name} {seconds}")
 
-    output_stream.writelines(lines)
+    output_stream.writelines('\n'.join(lines))
