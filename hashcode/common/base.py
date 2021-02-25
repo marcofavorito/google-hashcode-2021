@@ -14,7 +14,7 @@ stubs to be implemented for the actual problem.
 """
 import sys
 from dataclasses import dataclass
-from typing import TextIO, Set, List
+from typing import TextIO, Set, List, Tuple
 
 from hashcode.common.model import Street, CarPath, Schedule
 
@@ -34,11 +34,11 @@ class Input:
         """Post-initialization."""
 
 
-@dataclass
+@dataclass(frozen=True)
 class Output:
     """This data class manages the output of the problem."""
 
-    schedule: List[Schedule]
+    schedule: Tuple[Schedule] = tuple()
 
     @property
     def nb_intersections(self):
