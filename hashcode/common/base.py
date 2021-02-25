@@ -14,16 +14,26 @@ stubs to be implemented for the actual problem.
 """
 import sys
 from dataclasses import dataclass
-from typing import TextIO
+from typing import TextIO, Set, List
+
+from hashcode.common.model import Street, CarPath
 
 
 @dataclass
 class Input:
     """This data class manages the input of the problem."""
 
+    duration_seconds: int
+    nb_intersections: int
+    nb_cars: int
+    bonus_points: int
+    streets = Set[Street]
+    paths = Set[CarPath]
+
     def __post_init__(self):
         """Post-initialization."""
-        raise NotImplementedError
+
+
 
 
 @dataclass
@@ -53,7 +63,26 @@ def read_input(input_stream: TextIO = sys.stdin) -> Input:
     :param input_stream: the input text stream.
     :return: an Input object
     """
-    raise NotImplementedError
+    lines = [l.strip() for l in input_stream.readlines()]
+    D, I, S, V, F = list(map(int, lines[0].split()))
+    offset = 1
+    streets: List[Street] = []
+    for street_line in lines[offset: offset + S]:
+        b, e, street_name, l = street_line.split()
+        beginning = int(b)
+        end = int(e)
+        length = int(l)
+        street = Street(street_name, beginning, end, length)
+        streets.append(street)
+
+    offset += S
+    paths = []
+    for path in lines[offset: offset + V]:
+        tokens = path.split()
+        street_names = tokens[1:]
+        paths.append(CarPath(street_names))
+
+    return Input(duration_seconds=D, nb_intersections=I, nb_cars=V, bonus_points=F, streets=streets, paths=paths)
 
 
 def write_input(obj: Input, output_stream: TextIO = sys.stdout) -> None:
