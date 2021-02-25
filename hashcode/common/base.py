@@ -16,7 +16,7 @@ import sys
 from dataclasses import dataclass
 from typing import TextIO, Set, List
 
-from hashcode.common.model import Street, CarPath
+from hashcode.common.model import Street, CarPath, Schedule
 
 
 @dataclass
@@ -34,15 +34,18 @@ class Input:
         """Post-initialization."""
 
 
-
-
 @dataclass
 class Output:
     """This data class manages the output of the problem."""
 
+    schedule: List[Schedule]
+
+    @property
+    def nb_intersections(self):
+        return len(self.schedule)
+
     def __post_init__(self):
         """Post-initialization."""
-        raise NotImplementedError
 
 
 def score(i: Input, o: Output) -> int:
@@ -114,4 +117,15 @@ def write_output(obj: Output, output_stream: TextIO = sys.stdout) -> None:
     :param output_stream: the output text stream.
     :return: None
     """
-    raise NotImplementedError
+    lines = []
+    lines.append(str(obj.nb_intersections))
+    for schedule in obj.schedule:
+        lines.append(str(schedule.intersection_id))
+
+        nb_incoming_streets = len(schedule.green_light_streets)
+        lines.append(str(nb_incoming_streets))
+
+        for street, seconds in schedule.green_light_streets.items():
+            lines.append(f"{street.name} {seconds}")
+
+    output_stream.writelines(lines)

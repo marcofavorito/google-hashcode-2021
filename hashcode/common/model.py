@@ -2,10 +2,10 @@
 
 """Common classes to represent the problem."""
 from dataclasses import dataclass
-from typing import List
+from typing import List, Set, Tuple, FrozenSet, Dict
 
 
-@dataclass
+@dataclass(frozen=True, repr=True, eq=True, unsafe_hash=True)
 class Street:
     name: str
     beginning: int
@@ -13,6 +13,12 @@ class Street:
     length: int
 
 
-@dataclass
+@dataclass(frozen=True, repr=True, eq=True, unsafe_hash=True)
 class CarPath:
-    names: List[str]
+    names: Tuple[str]
+
+
+@dataclass(frozen=True, repr=True, eq=True)
+class Schedule:
+    intersection_id: int
+    green_light_streets: Dict[Street, int]
