@@ -27,8 +27,8 @@ class Input:
     nb_intersections: int
     nb_cars: int
     bonus_points: int
-    streets = Set[Street]
-    paths = Set[CarPath]
+    streets: Set[Street]
+    paths: Set[CarPath]
 
     def __post_init__(self):
         """Post-initialization."""
