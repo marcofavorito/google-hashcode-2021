@@ -32,7 +32,12 @@ def main(i: Input) -> Output:
 
         total_period_duration = len(count_by_streets) * 2
         compute_time = lambda count: int(count * total_period_duration // total_counts)
+
         green_lights: Dict[Street, int] = {s: max(1, compute_time(c)) for s, c in count_by_streets.items()}
+
+        # print("-"*100)
+        # print(total_period_duration)
+        # print(sorted(green_lights.values()))
 
         schedule = Schedule(intersection_id=intersection_id, green_light_streets=green_lights)
         schedules.append(schedule)
