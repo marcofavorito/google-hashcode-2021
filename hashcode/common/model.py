@@ -17,6 +17,10 @@ class Street:
 class CarPath:
     names: Tuple[str]
 
+    @property
+    def length(self) -> int:
+        return len(self.names)
+
 
 @dataclass(frozen=True, repr=True, eq=True)
 class Schedule:
