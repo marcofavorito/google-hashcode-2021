@@ -15,7 +15,7 @@ class Street:
 
 @dataclass(frozen=True, repr=True, eq=True, unsafe_hash=True)
 class CarPath:
-    names: Tuple[str]
+    street: Tuple[Street]
 
 
 @dataclass(frozen=True, repr=True, eq=True)
