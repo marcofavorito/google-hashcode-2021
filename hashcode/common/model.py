@@ -18,11 +18,15 @@ class CarPath:
     streets: Tuple[Street]
 
     @property
-    def length(self) -> int:
+    def nb_streets(self) -> int:
         return len(self.streets)
 
+    @property
+    def length(self) -> int:
+        return sum([s.length for s in self.streets])
+
     def __len__(self) -> int:
-        return self.length
+        return self.nb_streets
 
 
 @dataclass(frozen=True, repr=True, eq=True)
