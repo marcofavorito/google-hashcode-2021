@@ -14,9 +14,9 @@ stubs to be implemented for the actual problem.
 """
 import sys
 from dataclasses import dataclass
-from typing import TextIO, Set, List, Tuple
+from typing import TextIO, Set, List, Tuple, Dict
 
-from hashcode.common.model import Street, CarPath, Schedule
+from hashcode.common.model import Intersection, Street, CarPath, Schedule
 
 
 @dataclass
@@ -29,6 +29,7 @@ class Input:
     bonus_points: int
     streets: Set[Street]
     paths: Set[CarPath]
+    intersections: Dict[int, Intersection]
 
     def __post_init__(self):
         """Post-initialization."""
@@ -85,7 +86,18 @@ def read_input(input_stream: TextIO = sys.stdin) -> Input:
         street_names = tokens[1:]
         paths.append(CarPath(street_names))
 
-    return Input(duration_seconds=D, nb_intersections=I, nb_cars=V, bonus_points=F, streets=streets, paths=paths)
+    intersections = {}
+    for street in streets:
+        if street.beginning not in intersections:
+            intersections[street.beginning] = Intersection(id=street.beginning, in_streets=[], out_streets=[])
+        if street.end not in intersections:
+            intersections[street.end] = Intersection(id=street.end, in_streets=[], out_streets=[])
+        start_intersection = intersections[street.beginning]
+        start_intersection.out_streets.append(street.name)
+        end_intersection = intersections[street.end]
+        end_intersection.in_streets.append(street.name)
+            
+    return Input(duration_seconds=D, nb_intersections=I, nb_cars=V, bonus_points=F, streets=streets, paths=paths, intersections=intersections)
 
 
 def write_input(obj: Input, output_stream: TextIO = sys.stdout) -> None:

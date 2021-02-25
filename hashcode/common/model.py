@@ -22,3 +22,10 @@ class CarPath:
 class Schedule:
     intersection_id: int
     green_light_streets: Dict[Street, int]
+
+
+@dataclass(repr=True, eq=True, unsafe_hash=True)
+class Intersection:
+    id: int
+    in_streets: List[Street]
+    out_streets: List[Street]
