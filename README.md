@@ -1,4 +1,4 @@
-# google-hashcode-YYYY
+# google-hashcode-2021
 
 A framework to participate in the Google Hash Code contest.
 
@@ -18,7 +18,7 @@ When the problem specifications will be announced:
 
 - Clone the repo:
 ```
-git clone https://github.com/marcofavorito/google-hashcode-YYYY.git
+git clone https://github.com/marcofavorito/google-hashcode-2021.git
 ```
 
 - Create the virtual environment. It requires [Pipenv](https://pipenv.readthedocs.io/en/latest/):
