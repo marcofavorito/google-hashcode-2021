@@ -33,7 +33,7 @@ class Solution:
         """Check the consistency of the dynamically loaded module."""
         fun = getattr(self.module, "main", None)
         is_callable = callable(fun) if fun else False
-        if is_callable:
+        if not is_callable:
             raise ValueError(
                 f"Module {self._module_dotted_path} does not have a callable named 'main'."
             )

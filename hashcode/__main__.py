@@ -43,7 +43,7 @@ ALGORITHMS = sorted(
 )
 @click.option(
     "-i",
-    "--in",
+    "--in_",
     default=None,
     type=click.Path(exists=True, dir_okay=False, readable=True),
     help="Provide an input data file. Defaults to stdin",
