@@ -21,6 +21,9 @@ class CarPath:
     def length(self) -> int:
         return len(self.streets)
 
+    def __len__(self) -> int:
+        return self.length
+
 
 @dataclass(frozen=True, repr=True, eq=True)
 class Schedule:
