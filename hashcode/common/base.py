@@ -1,0 +1,88 @@
+# -*- coding: utf-8 -*-
+"""
+Main functions and classes to handle a problem instance.
+
+This module contains:
+
+- Input class: to handle the input of a problem instance.
+- Output class: to handle the output of the algorithm given an input.
+- score function: takes as parameters an Input and an Output, and gives the score.
+- (read|write)_(input|output): to read/write from/to file an Input/Output object.
+
+The definitions of classes and function should be considered
+stubs to be implemented for the actual problem.
+"""
+import sys
+from dataclasses import dataclass
+from typing import TextIO
+
+
+@dataclass
+class Input:
+    """This data class manages the input of the problem."""
+
+    def __post_init__(self):
+        """Post-initialization."""
+        raise NotImplementedError
+
+
+@dataclass
+class Output:
+    """This data class manages the output of the problem."""
+
+    def __post_init__(self):
+        """Post-initialization."""
+        raise NotImplementedError
+
+
+def score(i: Input, o: Output) -> int:
+    """
+    Score the solution.
+
+    :param i: the Input object.
+    :param o: the Output object.
+    :return: the score.
+    """
+    raise NotImplementedError
+
+
+def read_input(input_stream: TextIO = sys.stdin) -> Input:
+    """
+    Parse an Input object from a text stream.
+
+    :param input_stream: the input text stream.
+    :return: an Input object
+    """
+    raise NotImplementedError
+
+
+def write_input(obj: Input, output_stream: TextIO = sys.stdout) -> None:
+    """
+    Dump an Input object to an output stream.
+
+    :param obj: the object to dump.
+    :param output_stream: the output stream.
+    :return: None
+    """
+    raise NotImplementedError
+
+
+def read_output(input_stream: TextIO = sys.stdin) -> Output:
+    """
+    Parse a text stream to produce an Output object.
+
+    :param input_stream: the input text stream.
+    :return: an Output object.
+    """
+    raise NotImplementedError
+
+
+def write_output(obj: Output, output_stream: TextIO = sys.stdout) -> None:
+    """
+    Dump an Output object to an output stream.
+
+    :param obj: the Output object.
+    :param output_stream: the output text stream.
+    :return: None
+    """
+    raise NotImplementedError

@@ -1,0 +1,29 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+black = "==20.8b1"
+mypy = "*"
+isort = "*"
+flake8 = "*"
+pylint = "*"
+safety = "*"
+vulture = "*"
+bandit = "*"
+ipython = "*"
+jupyter = "*"
+flake8-docstrings = "*"
+flake8-bugbear = "*"
+flake8-eradicate = "*"
+flake8-isort = "*"
+
+[packages]
+numpy = "*"
+scipy = "*"
+pandas = "*"
+click = "*"
+
+[requires]
+python_version = "3.8"

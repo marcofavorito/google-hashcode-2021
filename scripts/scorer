@@ -1,0 +1,19 @@
+#!/usr/bin/env python3
+import argparse
+
+from hashcode.common.base import Input, Output, read_input, read_output, score
+
+parser = argparse.ArgumentParser("scorer", description="Score an Hash Code solution.")
+parser.add_argument("--in",  dest="in_file",  type=str, required=True, help="Filename for the input.")
+parser.add_argument("--solution", dest="solution_file", type=str, required=True, help="The associated output.")
+
+
+def main():
+    args = parser.parse_args()
+    i: Input = read_input(args.in_file)
+    o: Output = read_output(args.solution_file)
+    print(score(i, o))
+
+
+if __name__ == '__main__':
+    main()
