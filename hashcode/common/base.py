@@ -70,24 +70,25 @@ def read_input(input_stream: TextIO = sys.stdin) -> Input:
     lines = [l.strip() for l in input_stream.readlines()]
     D, I, S, V, F = list(map(int, lines[0].split()))
     offset = 1
-    streets: List[Street] = []
+    streets: Dict[Street] = {}
     for street_line in lines[offset: offset + S]:
         b, e, street_name, l = street_line.split()
         beginning = int(b)
         end = int(e)
         length = int(l)
         street = Street(street_name, beginning, end, length)
-        streets.append(street)
+        streets[street_name] = street
 
     offset += S
     paths = []
     for path in lines[offset: offset + V]:
         tokens = path.split()
         street_names = tokens[1:]
-        paths.append(CarPath(street_names))
+        path_streets = [streets[street_name] for street_name in street_names]
+        paths.append(CarPath(path_streets))
 
     intersections = {}
-    for street in streets:
+    for street_name, street in streets.items():
         if street.beginning not in intersections:
             intersections[street.beginning] = Intersection(id=street.beginning, in_streets=[], out_streets=[])
         if street.end not in intersections:
@@ -97,7 +98,7 @@ def read_input(input_stream: TextIO = sys.stdin) -> Input:
         end_intersection = intersections[street.end]
         end_intersection.in_streets.append(street)
             
-    return Input(duration_seconds=D, nb_intersections=I, nb_cars=V, bonus_points=F, streets=streets, paths=paths, intersections=intersections)
+    return Input(duration_seconds=D, nb_intersections=I, nb_cars=V, bonus_points=F, streets=list(streets.values()), paths=paths, intersections=intersections)
 
 
 def write_input(obj: Input, output_stream: TextIO = sys.stdout) -> None:
