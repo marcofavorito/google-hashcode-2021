@@ -55,7 +55,13 @@ ALGORITHMS = sorted(
     type=click.Path(exists=False, dir_okay=False, writable=True),
     help="Provide an output data file. Defaults to stdout",
 )
-def main(alg: str, in_, out):
+@click.option(
+    "-s",
+    default=False,
+    type=bool,
+    help="Whether to print the score or not.",
+)
+def main(alg: str, in_, out, s):
     """Run a solution against a problem instance."""
     input_stream = Path(in_).open() if in_ else sys.stdin
     output_stream = Path(out).open("w") if out else sys.stdout
@@ -65,8 +71,10 @@ def main(alg: str, in_, out):
     logger.debug(f"Chosen algorithm: {alg}")
     input_: Input = read_input(input_stream)
     output: Output = solution.main(input_)
-    solution_score = score(input_, output)
-    logger.debug(f"Score of the solution: {solution_score}")
+
+    if s:
+        solution_score = score(input_, output)
+        logger.debug(f"Score of the solution: {solution_score}")
     write_output(output, output_stream)
 
 
