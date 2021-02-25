@@ -19,7 +19,7 @@ class CarPath:
 
     @property
     def length(self) -> int:
-        return len(self.names)
+        return len(self.streets)
 
 
 @dataclass(frozen=True, repr=True, eq=True)
