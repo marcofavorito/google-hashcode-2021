@@ -19,7 +19,7 @@ for input in data/[a_,b_,c_,d_,e_,f_]*.txt;
 do
     test_name=$(echo $input | cut -d'/' -f 2 | cut -d'.' -f 1)
     echo "- $test_name: ${ALGS[$count]}" >&1 | tee -a SUBMISSION
-    output_filename="out/${test_name}.out"
+    output_filename="outputs/${test_name}.out"
     echo "Processing input $input, writing output in $output_filename"
     python3 -m hashcode --alg ${ALGS[$count]} < $input > $output_filename
     if [[ $? -ne 0 ]]; then
