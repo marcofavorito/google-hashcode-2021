@@ -41,5 +41,8 @@ if __name__ == "__main__":
 
     print(f"Nb cars: {len(input_.paths)}")
     print(f"Nb streets: {len(input_.streets)}")
+    print(f"Nb intersections: {input_.nb_intersections}")
+    print(f"Duration: {input_.duration_seconds}")
+    print(f"Bonus: {input_.bonus_points}")
     print(f"Avg path length: {np.mean([p.length for p in input_.paths])}")
     print(f"Std path length: {np.std([p.length for p in input_.paths])}")
