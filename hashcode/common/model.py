@@ -15,7 +15,7 @@ class Street:
 
 @dataclass(frozen=True, repr=True, eq=True, unsafe_hash=True)
 class CarPath:
-    street: Tuple[Street]
+    streets: Tuple[Street]
 
     @property
     def length(self) -> int:
