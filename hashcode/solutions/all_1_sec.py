@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-"""A naive solution."""
+"""All lights, 1 second."""
 
 from typing import List
 from hashcode.common.model import Schedule
@@ -8,7 +8,7 @@ from hashcode.common.base import Input, Output
 
 
 def main(i: Input) -> Output:
-    """Naive solution."""
+    """All lights, 1 second."""
     schedules: List[Schedule] = []
     for intersection_id, intersection in i.intersections.items():
         green_lights = {}
