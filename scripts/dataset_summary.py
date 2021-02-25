@@ -4,6 +4,7 @@
 """Dataset summary."""
 
 import argparse
+from pathlib import Path
 
 import numpy as np
 
@@ -36,5 +37,12 @@ def print_stats(data, label):
 
 
 if __name__ == "__main__":
-    input_: Input = read_input(args.in_file)
-    # TODO
+    input_: Input = read_input(Path(args.in_file).open())
+
+    print(f"Nb cars: {len(input_.paths)}")
+    print(f"Nb streets: {len(input_.streets)}")
+    print(f"Nb intersections: {input_.nb_intersections}")
+    print(f"Duration: {input_.duration_seconds}")
+    print(f"Bonus: {input_.bonus_points}")
+    print(f"Avg path length: {np.mean([p.length for p in input_.paths])}")
+    print(f"Std path length: {np.std([p.length for p in input_.paths])}")
